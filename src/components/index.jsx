@@ -14,7 +14,7 @@ class App extends Component{
     
     render(){
         return (
-            <CoursesList />
+            <CoursesList  courses={this.state.courses} />
         )
     }
 }
