@@ -1,14 +1,10 @@
 import React from 'react'
 import Course from  './Course'
+import CourseAddForm from './CourseAddForm';
 
 const CoursesList =(props)=>(
     <div>
-            <form onSubmit={props.onAddCourse}>
-                <input type="text" placeholder="Nombre del curso" className="name" required/>
-                <input type="text" placeholder="Profesor" className="teacher" required/>
-                <input type="hidden" className="id" value={Math.floor(Math.random()*100)}/>
-                <input type="submit" value="Guardar" />
-            </form>
+            <CourseAddForm onAddCourse={props.onAddCourse} />
             <ul>
                 {
                     props.courses.map(course => (

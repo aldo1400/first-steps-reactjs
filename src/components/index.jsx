@@ -14,14 +14,14 @@ class App extends Component{
     }
     
     handleOnAddCourse(e){
-        alert('Evento en React');
-        e.preventDefault();
+        // alert('Evento en React');
+        e.preventDefault()
         // Obtener datos del formularios, añadirlo al this.state.courses
         let  form=e.target,
         course={
             id:form.id.value,
             name:form.name.value,
-            teacher:form.teacher.value
+            teacher:form.teacher.value,
         }
         // añadir el nuevo curso al objetoc ourses
         this.setState({
