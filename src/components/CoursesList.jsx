@@ -3,7 +3,7 @@ import Course from  './Course'
 
 const CoursesList =(props)=>(
     <div>
-            <form>
+            <form onSubmit={props.onAddCourse}>
                 <input type="text" placeholder="Nombre del curso" className="name" required/>
                 <input type="text" placeholder="Profesor" className="teacher" required/>
                 <input type="hidden" className="id" value={Math.floor(Math.random()*100)}/>
