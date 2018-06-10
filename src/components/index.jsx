@@ -1,5 +1,6 @@
 import React,{Component} from 'react'
-import uid from 'uid';
+import uid from 'uid'
+import $ from 'jquery'
 import { courses } from '../data/courses.json'
 import PropTypes from 'prop-types';
 import CoursesList from './CoursesList'
@@ -10,9 +11,11 @@ class App extends Component{
     constructor(...props){
         super(...props)
         this.state={
-            courses:courses
+            courses:[]
         }
         this.handleOnAddCourse=this.handleOnAddCourse.bind(this)
+        this.fetchData=this.fetchData.bind(this)
+        this.resetData=this.resetData.bind(this)
     }
     
     handleOnAddCourse(e){
@@ -33,13 +36,42 @@ class App extends Component{
         form.reset();
     }
 
+    fetchData(){
+
+        // setTimeout(()=>this.setState({courses:courses}),2000)
+        $('#root')
+        .fadeOut(2000,()=>this.setState({courses:courses}))
+        .fadeIn()
+    }
+
+    resetData(){
+        // this.setState({courses:[]})
+
+        $('#root')
+        .fadeOut(2000,()=>this.setState({courses:[]}))
+        .fadeIn()
+    }
+    componentDidMount(){
+        return this.fetchData()
+    }
     render(){
-        return (
-            <div>
-            <CourseAddForm onAddCourse={this.handleOnAddCourse} />
-            <CoursesList  courses={this.state.courses} />
-            </div>
-        )
+        if(!this.state.courses.length){
+            return(
+                <div>
+                    <p>No hay cursos</p>
+                    <button onClick={this.fetchData}>Cargar Cursos </button>
+                </div>
+            )
+        }
+        else{
+            return (
+                <div>
+                <CourseAddForm onAddCourse={this.handleOnAddCourse} />
+                <CoursesList  courses={this.state.courses} />
+                <button onClick={this.resetData}>Borrar Cursos </button>
+                </div>
+            )
+        }
     }
 }
 App.propTypes={
