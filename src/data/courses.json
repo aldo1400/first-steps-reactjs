@@ -1,0 +1,8 @@
+{
+   "courses":[ 
+       {"id":1,"name":"React desde cero","teacher":"Jonathan Mircha"},
+        {"id":2,"name":"Drupal 8 desde cero","teacher":"Alberto Quiroga"},
+        {"id":3,"name":"React desde cero","teacher":"Jonathan Mircha"},
+        {"id":4,"name":"Drupal 8 desde cero","teacher":"Alberto Quiroga"}
+   ]
+}

@@ -1,16 +1,16 @@
 import React,{Component} from 'react'
+import uid from 'uid';
+import { courses } from '../data/courses.json'
 import PropTypes from 'prop-types';
 import CoursesList from './CoursesList'
 import CourseAddForm from './CourseAddForm';
+
 
 class App extends Component{
     constructor(...props){
         super(...props)
         this.state={
-            courses:[
-                {id:1,name:'React desde cero',teacher:'Jonathan Mircha'},
-                {id:2,name:'Drupal 8 desde cero',teacher:'Alberto Quiroga'},
-            ]
+            courses:courses
         }
         this.handleOnAddCourse=this.handleOnAddCourse.bind(this)
     }
@@ -44,12 +44,13 @@ class App extends Component{
 }
 App.propTypes={
     // DEFINIR LOS TIPOS DE VARIABLES
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     name:PropTypes.string.isRequired,
     teacher:PropTypes.string.isRequired
 }
 
 App.defaultProps={
+    id:uid(10),
     name:'Curso desconocido',
     teacher:'Profesor no Asignado',
 }
