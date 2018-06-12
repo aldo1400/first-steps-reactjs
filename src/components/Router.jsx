@@ -22,7 +22,7 @@ const StaticSite=()=>(
         </ul>
       </nav>
       <hr/>
-      <Route path="/" component={Home} />
+      <Route path="/" component={Home}/>
       <Route path="/acerca" component={Acerca} />
       <Route path="/servicios" component={Servicios} />
       <Route path="/contacto" component={Contacto} />
@@ -49,11 +49,40 @@ const Servicios=()=>(
     </ul>
 )
 
-const Contacto=()=>(
+const Contacto=({match})=>(
     <div>
         <h2>Informacion de contacto</h2>
+        <Route path={`${match.url}/:contactoInfo`} component={InfoContacto}/>
+        <Route exact path={match.url} render={()=>(
+            <h3>Mantente en contacto</h3>
+        )}
+
+        />
+        <ul>
+            <li><Link to={`${match.url}/email`}>Email</Link></li>
+            <li><Link to={`${match.url}/web`}>Sitio Web</Link></li>
+            <li><Link to={`${match.url}/ubicación`}>Ubicación</Link></li>
+        </ul>
+        
+        <Route path={`${match.url}/email`} render={()=>(
+            <a href="mailto:jonmircha@gmail.com" target="_blank">jonmircha@gmail.com</a>
+        )}/>
+
+        <Route path={`${match.url}/web`} render={()=>(
+            <a href="http://jonmircha.com" target="_blank">jonmircha.com</a>
+        )}/>
+
+        <Route path={`${match.url}/ubicación`} render={()=>(
+            <a href="#" target="_blank">Mexico,CDMX</a>
+        )}/>
+
     </div>
 )
 
+const InfoContacto=({match})=>(
+    <div>
+        <h4>{match.params.contactoInfo}</h4>
+        </div>
+   )
 
 export default StaticSite
