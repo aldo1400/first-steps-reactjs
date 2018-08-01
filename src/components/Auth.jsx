@@ -4,6 +4,7 @@ import {
     Route,
     Link,
     Redirect,
+    Switch,
     withRouter
 
 } from 'react-router-dom'
@@ -58,15 +59,25 @@ class Login extends Component{
     }
 
     login(){
-
+        fakeAuth.authenticate(()=>this.setState({redirectRoute:true}))
     }
 
     render(){
-        if(){
-
+        const {from}=this.props.location.state || {from:{pathname:'/'}}
+        const {redirectRoute}=this.state;
+        if(redirectRoute){
+            return(
+                <Redirect to={from}/>
+            )
         }
         else{
-
+            return(
+                <div>
+                    <h3>Debes estar logeado para ver esta pagina <mark>{from.pathname}</mark>
+                    </h3>
+                    <button onClick={this.login}>Log in </button>
+                </div>
+            )
         }
     }
 }
